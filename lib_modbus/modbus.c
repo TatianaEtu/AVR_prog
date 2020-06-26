@@ -122,6 +122,13 @@ uint16_t mbCRCCalc (uint8_t* msg, uint8_t msg_length){
  *			  1 - ID is the same, CRC is OK, 250 is initial value
  */
 int8_t mbFrameCheck( void ){
+	
+	//if (rx_buffer[0] == ADDRESS_FIELD)
+	//{
+		//PORTB = (1<< PORTB5); // set led on
+	//}
+	
+	
 	if ( ADDRESS_FIELD == SLAVE_ID ){
 		/*this variable contains the last 2 bytes of received message*/
 		uint16_t rx_crc_field = 0; 
@@ -141,7 +148,10 @@ int8_t mbFrameCheck( void ){
 	}
 
 	/* The message is not addressed to me. Ignore message */
-	else return -1; 	
+	else {
+		
+		return -1;
+	} 	
 
 }
 
@@ -293,7 +303,7 @@ void mbFun10Execution (void)
 		/* record new values to "uint16_reg_array" - modbas dataset */
 		for (uint16_t j = 0; j < num_of_bytes; j=j+2){
 			uint16_reg_array[starting_adr + k] = rx_buffer[7 + j]<<8 | rx_buffer[7 + j + 1];
-			if ((starting_adr + k) >= MB_REG_ADR_FLOAT_BEGINING){
+		/*	if ((starting_adr + k) >= MB_REG_ADR_FLOAT_BEGINING){
 				if (((starting_adr + k - MB_REG_ADR_FLOAT_BEGINING) % 2) != 0){
 					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[0] = uint16_reg_array[starting_adr + k - 1] >> 8;
 					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[1] = uint16_reg_array[starting_adr + k - 1] & 0xFF;
@@ -304,7 +314,7 @@ void mbFun10Execution (void)
 			else{
 				mb_uint16_variables_arr[starting_adr + k] = uint16_reg_array[starting_adr + k];
 			}
-			
+			*/
 			k++;
 		}
 		/* Normal response copies the request completely */
@@ -352,15 +362,15 @@ ISR (USART_RX_vect){
 	Modbus state switches to MB_STATE_RECEPTION
 	In this state, the receive buffer is allowed to fill*/
 	if (MB_STATE == MB_STATE_IDLE){
-		MB_STATE = MB_STATE_RECEPTION;				
+		MB_STATE = MB_STATE_RECEPTION;					
 	}	
 	
 	/* Filling receive buffer */
 	if ( MB_STATE == MB_STATE_RECEPTION ){		
 		if (rx_buf_index < RX_BUFFER_SIZE){// if rx_buf_index > (RX_BUFFER_SIZE - 1)  then recieve data lost
-			rx_buf_index ++;		
+			rx_buf_index++;		
 			rx_buffer[rx_buf_index] = data; 
-		}		
+		}
 	}
 	/* After each received byte reset timer (which detects t3.5 delay after frame) */
 	timer0ResetCounter(); 	
@@ -444,6 +454,7 @@ ISR (TIMER0_COMPA_vect){
 		else{
 			/* If the received message don't passed the frame check (the identifier or the checksum doesn't match)
 			Then ignore request. No response is generated or sent. */
+			
 			MB_STATE = MB_STATE_IDLE;
 		}
 		/* Clear receive buffer in all cases! even if slave don't need to reply */

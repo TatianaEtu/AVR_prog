@@ -23,7 +23,7 @@
 /************************************************************************/
 
 uint16_t mb_uint16_variables_arr [5];
-#define  VAR1         mb_uint16_variables_arr[0]
+#define  VAR1  mb_uint16_variables_arr[0]
 
 
 
