@@ -151,6 +151,7 @@ int8_t mbFrameCheck( void ){
 	else {
 		
 		return -1;
+		
 	} 	
 
 }
@@ -367,9 +368,9 @@ ISR (USART_RX_vect){
 	
 	/* Filling receive buffer */
 	if ( MB_STATE == MB_STATE_RECEPTION ){		
-		if (rx_buf_index < RX_BUFFER_SIZE){// if rx_buf_index > (RX_BUFFER_SIZE - 1)  then recieve data lost
-			rx_buf_index++;		
+		if (rx_buf_index < RX_BUFFER_SIZE){// if rx_buf_index > (RX_BUFFER_SIZE - 1)  then recieve data lost				
 			rx_buffer[rx_buf_index] = data; 
+			rx_buf_index = rx_buf_index + 1;	
 		}
 	}
 	/* After each received byte reset timer (which detects t3.5 delay after frame) */
