@@ -1,0 +1,1357 @@
+
+Hello world.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000002  00800100  000006c4  00000758  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000006c4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000181  00800102  00800102  0000075a  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000075a  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000078c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000130  00000000  00000000  000007cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001066  00000000  00000000  000008fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000890  00000000  00000000  00001962  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000009e7  00000000  00000000  000021f2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000378  00000000  00000000  00002bdc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000007f1  00000000  00000000  00002f54  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000ae1  00000000  00000000  00003745  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000168  00000000  00000000  00004226  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 09 03 	jmp	0x612	; 0x612 <__vector_14>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 7f 02 	jmp	0x4fe	; 0x4fe <__vector_18>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 b9 02 	jmp	0x572	; 0x572 <__vector_20>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e4 ec       	ldi	r30, 0xC4	; 196
+  7c:	f6 e0       	ldi	r31, 0x06	; 6
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a2 30       	cpi	r26, 0x02	; 2
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	22 e0       	ldi	r18, 0x02	; 2
+  8c:	a2 e0       	ldi	r26, 0x02	; 2
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a3 38       	cpi	r26, 0x83	; 131
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <main>
+  9e:	0c 94 60 03 	jmp	0x6c0	; 0x6c0 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <uartInit>:
+ *@return   Current Modbus state (mb_state - typedef enum)
+ *@note     Modbus states specified in modbus.h
+ */
+mb_state mbGetState (void){
+	return MB_STATE;
+}
+  a6:	88 ed       	ldi	r24, 0xD8	; 216
+  a8:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
+  ac:	8e e0       	ldi	r24, 0x0E	; 14
+  ae:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
+  b2:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+  b6:	83 e3       	ldi	r24, 0x33	; 51
+  b8:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
+  bc:	08 95       	ret
+
+000000be <uartReadByte>:
+  be:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+  c2:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+  c6:	9c 71       	andi	r25, 0x1C	; 28
+  c8:	09 f0       	breq	.+2      	; 0xcc <uartReadByte+0xe>
+  ca:	8f ef       	ldi	r24, 0xFF	; 255
+  cc:	08 95       	ret
+
+000000ce <timer0Init>:
+  ce:	14 bc       	out	0x24, r1	; 36
+  d0:	15 bc       	out	0x25, r1	; 37
+  d2:	8e e7       	ldi	r24, 0x7E	; 126
+  d4:	87 bd       	out	0x27, r24	; 39
+  d6:	86 e3       	ldi	r24, 0x36	; 54
+  d8:	88 bd       	out	0x28, r24	; 40
+  da:	10 92 6e 00 	sts	0x006E, r1	; 0x80006e <__DATA_REGION_ORIGIN__+0xe>
+  de:	08 95       	ret
+
+000000e0 <timer0Start>:
+  e0:	85 b5       	in	r24, 0x25	; 37
+  e2:	84 60       	ori	r24, 0x04	; 4
+  e4:	85 bd       	out	0x25, r24	; 37
+  e6:	08 95       	ret
+
+000000e8 <timer0OCRAInrerruptEn>:
+  e8:	ee e6       	ldi	r30, 0x6E	; 110
+  ea:	f0 e0       	ldi	r31, 0x00	; 0
+  ec:	80 81       	ld	r24, Z
+  ee:	82 60       	ori	r24, 0x02	; 2
+  f0:	80 83       	st	Z, r24
+  f2:	08 95       	ret
+
+000000f4 <mbClearRecieveBuffer>:
+
+/**
+ *@brief  filling the rx_buffer array with zeros
+ */
+void mbClearRecieveBuffer (void){
+	rx_buf_index = 0;
+  f4:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <rx_buf_index>
+  f8:	e6 e0       	ldi	r30, 0x06	; 6
+  fa:	f1 e0       	ldi	r31, 0x01	; 1
+  fc:	8a e6       	ldi	r24, 0x6A	; 106
+  fe:	91 e0       	ldi	r25, 0x01	; 1
+	for (int i = 0; i< RX_BUFFER_SIZE; i++){
+		rx_buffer[i] = 0;
+ 100:	11 92       	st	Z+, r1
+/**
+ *@brief  filling the rx_buffer array with zeros
+ */
+void mbClearRecieveBuffer (void){
+	rx_buf_index = 0;
+	for (int i = 0; i< RX_BUFFER_SIZE; i++){
+ 102:	e8 17       	cp	r30, r24
+ 104:	f9 07       	cpc	r31, r25
+ 106:	e1 f7       	brne	.-8      	; 0x100 <mbClearRecieveBuffer+0xc>
+		rx_buffer[i] = 0;
+	}
+}
+ 108:	08 95       	ret
+
+0000010a <mbClearTransmitBuffer>:
+
+/**
+ *@brief  filling the tx_buffer array with zeros
+ */
+void mbClearTransmitBuffer (void){
+	tx_buf_index = 0;
+ 10a:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <tx_buf_index>
+ 10e:	ea e6       	ldi	r30, 0x6A	; 106
+ 110:	f1 e0       	ldi	r31, 0x01	; 1
+ 112:	8e ec       	ldi	r24, 0xCE	; 206
+ 114:	91 e0       	ldi	r25, 0x01	; 1
+	for (int i = 0; i< TX_BUFFER_SIZE; i++){
+		tx_buffer[i] = 0;
+ 116:	11 92       	st	Z+, r1
+/**
+ *@brief  filling the tx_buffer array with zeros
+ */
+void mbClearTransmitBuffer (void){
+	tx_buf_index = 0;
+	for (int i = 0; i< TX_BUFFER_SIZE; i++){
+ 118:	e8 17       	cp	r30, r24
+ 11a:	f9 07       	cpc	r31, r25
+ 11c:	e1 f7       	brne	.-8      	; 0x116 <mbClearTransmitBuffer+0xc>
+		tx_buffer[i] = 0;
+	}
+}
+ 11e:	08 95       	ret
+
+00000120 <mbInit>:
+ *@brief    Modbus initialization
+ *@note
+ */
+void mbInit(void)
+{
+	MB_STATE = MB_STATE_IDLE; //ready to receive
+ 120:	81 e0       	ldi	r24, 0x01	; 1
+ 122:	80 93 32 02 	sts	0x0232, r24	; 0x800232 <MB_STATE>
+	uartInit(); // note: RX and TX interrupts enable
+ 126:	0e 94 53 00 	call	0xa6	; 0xa6 <uartInit>
+			
+	/* zero initialization of the rx_buffer and tx_buffer*/	
+	mbClearRecieveBuffer();
+ 12a:	0e 94 7a 00 	call	0xf4	; 0xf4 <mbClearRecieveBuffer>
+	mbClearTransmitBuffer();
+ 12e:	0e 94 85 00 	call	0x10a	; 0x10a <mbClearTransmitBuffer>
+	
+	/* Timer0 stands for 3.5 character delay detect */
+	/* processing a received message, generating a response, 
+	and initiating the sending of a response occurs in the interrupt handler*/
+	timer0Init();
+ 132:	0e 94 67 00 	call	0xce	; 0xce <timer0Init>
+	timer0Start();
+ 136:	0e 94 70 00 	call	0xe0	; 0xe0 <timer0Start>
+	timer0OCRAInrerruptEn();  
+ 13a:	0e 94 74 00 	call	0xe8	; 0xe8 <timer0OCRAInrerruptEn>
+	*/
+	
+	mb_float_type pid_out,pid_P_factor,pid_I_factor,pid_D_factor,temperature;
+	pid_out.f = 96.3, pid_P_factor.f = 10.5, pid_I_factor.f = 0.5, pid_D_factor.f = 0.1, temperature.f = 53.5;
+	
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING] = ( pid_out.u[0] << 8 ) | ( pid_out.u[1] );
+ 13e:	ee ec       	ldi	r30, 0xCE	; 206
+ 140:	f1 e0       	ldi	r31, 0x01	; 1
+ 142:	89 e9       	ldi	r24, 0x99	; 153
+ 144:	9a e9       	ldi	r25, 0x9A	; 154
+ 146:	93 87       	std	Z+11, r25	; 0x0b
+ 148:	82 87       	std	Z+10, r24	; 0x0a
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 1] = ( pid_out.u[2] << 8 ) | ( pid_out.u[3] );
+ 14a:	82 e4       	ldi	r24, 0x42	; 66
+ 14c:	90 ec       	ldi	r25, 0xC0	; 192
+ 14e:	95 87       	std	Z+13, r25	; 0x0d
+ 150:	84 87       	std	Z+12, r24	; 0x0c
+	
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 2] = ( pid_P_factor.u[0] << 8 ) | ( pid_P_factor.u[1] );
+ 152:	17 86       	std	Z+15, r1	; 0x0f
+ 154:	16 86       	std	Z+14, r1	; 0x0e
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 3] = ( pid_P_factor.u[2] << 8 ) | ( pid_P_factor.u[3] );
+ 156:	81 e4       	ldi	r24, 0x41	; 65
+ 158:	98 e2       	ldi	r25, 0x28	; 40
+ 15a:	91 8b       	std	Z+17, r25	; 0x11
+ 15c:	80 8b       	std	Z+16, r24	; 0x10
+	
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 4] = ( pid_I_factor.u[0] << 8 ) | ( pid_I_factor.u[1] );
+ 15e:	13 8a       	std	Z+19, r1	; 0x13
+ 160:	12 8a       	std	Z+18, r1	; 0x12
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 5] = ( pid_I_factor.u[2] << 8 ) | ( pid_I_factor.u[3] );
+ 162:	8f e3       	ldi	r24, 0x3F	; 63
+ 164:	90 e0       	ldi	r25, 0x00	; 0
+ 166:	95 8b       	std	Z+21, r25	; 0x15
+ 168:	84 8b       	std	Z+20, r24	; 0x14
+	
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 6] = ( pid_D_factor.u[0] << 8 ) | ( pid_D_factor.u[1] );
+ 16a:	8c ec       	ldi	r24, 0xCC	; 204
+ 16c:	9d ec       	ldi	r25, 0xCD	; 205
+ 16e:	97 8b       	std	Z+23, r25	; 0x17
+ 170:	86 8b       	std	Z+22, r24	; 0x16
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + +7] = ( pid_D_factor.u[2] << 8 ) | ( pid_D_factor.u[3] );
+ 172:	8d e3       	ldi	r24, 0x3D	; 61
+ 174:	9c ec       	ldi	r25, 0xCC	; 204
+ 176:	91 8f       	std	Z+25, r25	; 0x19
+ 178:	80 8f       	std	Z+24, r24	; 0x18
+	
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING +8] = ( temperature.u[0] << 8 ) | ( temperature.u[1] );
+ 17a:	13 8e       	std	Z+27, r1	; 0x1b
+ 17c:	12 8e       	std	Z+26, r1	; 0x1a
+	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 9] = ( temperature.u[2] << 8 ) | ( temperature.u[3] );
+ 17e:	82 e4       	ldi	r24, 0x42	; 66
+ 180:	96 e5       	ldi	r25, 0x56	; 86
+ 182:	95 8f       	std	Z+29, r25	; 0x1d
+ 184:	84 8f       	std	Z+28, r24	; 0x1c
+ 186:	08 95       	ret
+
+00000188 <mbCRCCalc>:
+static const uint16_t mb_crc_poly = 0xA001; //polynomial value (for CRC16 XOR POLY)
+uint16_t mbCRCCalc (uint8_t* msg, uint8_t msg_length){
+	/* CRC value initialization*/
+	uint16_t crc_val = 0xFFFF;
+	
+	for (uint8_t msg_index = 0; msg_index < msg_length; msg_index ++){
+ 188:	66 23       	and	r22, r22
+ 18a:	f9 f0       	breq	.+62     	; 0x1ca <mbCRCCalc+0x42>
+ 18c:	fc 01       	movw	r30, r24
+ 18e:	61 50       	subi	r22, 0x01	; 1
+ 190:	26 2f       	mov	r18, r22
+ 192:	30 e0       	ldi	r19, 0x00	; 0
+ 194:	2f 5f       	subi	r18, 0xFF	; 255
+ 196:	3f 4f       	sbci	r19, 0xFF	; 255
+ 198:	ac 01       	movw	r20, r24
+ 19a:	42 0f       	add	r20, r18
+ 19c:	53 1f       	adc	r21, r19
+ 19e:	8f ef       	ldi	r24, 0xFF	; 255
+ 1a0:	9f ef       	ldi	r25, 0xFF	; 255
+		crc_val = crc_val ^ msg[msg_index];
+ 1a2:	21 91       	ld	r18, Z+
+ 1a4:	82 27       	eor	r24, r18
+ 1a6:	28 e0       	ldi	r18, 0x08	; 8
+		for (uint8_t crc_index = 0; crc_index < 8; crc_index++){
+
+			if ( crc_val & (1 << 0) ){
+ 1a8:	80 ff       	sbrs	r24, 0
+ 1aa:	07 c0       	rjmp	.+14     	; 0x1ba <mbCRCCalc+0x32>
+				crc_val = ( crc_val >> 1 ) ^ mb_crc_poly;
+ 1ac:	96 95       	lsr	r25
+ 1ae:	87 95       	ror	r24
+ 1b0:	31 e0       	ldi	r19, 0x01	; 1
+ 1b2:	83 27       	eor	r24, r19
+ 1b4:	30 ea       	ldi	r19, 0xA0	; 160
+ 1b6:	93 27       	eor	r25, r19
+ 1b8:	02 c0       	rjmp	.+4      	; 0x1be <mbCRCCalc+0x36>
+			}
+			else{
+				crc_val = crc_val >> 1; 
+ 1ba:	96 95       	lsr	r25
+ 1bc:	87 95       	ror	r24
+ 1be:	21 50       	subi	r18, 0x01	; 1
+	/* CRC value initialization*/
+	uint16_t crc_val = 0xFFFF;
+	
+	for (uint8_t msg_index = 0; msg_index < msg_length; msg_index ++){
+		crc_val = crc_val ^ msg[msg_index];
+		for (uint8_t crc_index = 0; crc_index < 8; crc_index++){
+ 1c0:	99 f7       	brne	.-26     	; 0x1a8 <mbCRCCalc+0x20>
+static const uint16_t mb_crc_poly = 0xA001; //polynomial value (for CRC16 XOR POLY)
+uint16_t mbCRCCalc (uint8_t* msg, uint8_t msg_length){
+	/* CRC value initialization*/
+	uint16_t crc_val = 0xFFFF;
+	
+	for (uint8_t msg_index = 0; msg_index < msg_length; msg_index ++){
+ 1c2:	e4 17       	cp	r30, r20
+ 1c4:	f5 07       	cpc	r31, r21
+ 1c6:	69 f7       	brne	.-38     	; 0x1a2 <mbCRCCalc+0x1a>
+ 1c8:	02 c0       	rjmp	.+4      	; 0x1ce <mbCRCCalc+0x46>
+ *@note		  This function should be called only after the buffer is completely filled (CRC is not calculated on the fly)
+ */
+static const uint16_t mb_crc_poly = 0xA001; //polynomial value (for CRC16 XOR POLY)
+uint16_t mbCRCCalc (uint8_t* msg, uint8_t msg_length){
+	/* CRC value initialization*/
+	uint16_t crc_val = 0xFFFF;
+ 1ca:	8f ef       	ldi	r24, 0xFF	; 255
+ 1cc:	9f ef       	ldi	r25, 0xFF	; 255
+	}
+
+	/* swap bytes in crc_val */
+	crc_val = (crc_val << 8)|(crc_val >> 8);
+	return crc_val;
+}
+ 1ce:	98 27       	eor	r25, r24
+ 1d0:	89 27       	eor	r24, r25
+ 1d2:	98 27       	eor	r25, r24
+ 1d4:	08 95       	ret
+
+000001d6 <mbFrameCheck>:
+ *@brief     Function check received frame ( is slave ID matches, is CRC OK)
+ *@return    -1 - the message is not addressed to me (ID does not match), 
+ *            0 - ID is the same, error in the CRC, 
+ *			  1 - ID is the same, CRC is OK, 250 is initial value
+ */
+int8_t mbFrameCheck( void ){
+ 1d6:	cf 93       	push	r28
+ 1d8:	df 93       	push	r29
+	if ( ADDRESS_FIELD == SLAVE_ID ){
+ 1da:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <rx_buffer>
+ 1de:	83 30       	cpi	r24, 0x03	; 3
+ 1e0:	d9 f4       	brne	.+54     	; 0x218 <mbFrameCheck+0x42>
+		/* error: 
+		uint16_t rx_crc_field = (rx_buffer[RX_BUFFER_SIZE - 2] << 8) | rx_buffer[RX_BUFFER_SIZE - 1]; 
+		uint16_t crc = mbCRCCalc( rx_buffer, RX_BUFFER_SIZE - 2 ); */	
+		
+		/* last 2 bytes of received message are read, not last 2 bytes of rx_buffer! (compare with the code above, comment as error) */
+		rx_crc_field = (rx_buffer[rx_buf_index - 2] << 8) | rx_buffer[rx_buf_index - 1];
+ 1e2:	60 91 05 01 	lds	r22, 0x0105	; 0x800105 <rx_buf_index>
+ 1e6:	c6 2f       	mov	r28, r22
+ 1e8:	d0 e0       	ldi	r29, 0x00	; 0
+		/* calculation of the checksum of the received message*/
+		uint16_t crc = mbCRCCalc( rx_buffer, rx_buf_index - 2 );		
+ 1ea:	62 50       	subi	r22, 0x02	; 2
+ 1ec:	86 e0       	ldi	r24, 0x06	; 6
+ 1ee:	91 e0       	ldi	r25, 0x01	; 1
+ 1f0:	0e 94 c4 00 	call	0x188	; 0x188 <mbCRCCalc>
+		/* error: 
+		uint16_t rx_crc_field = (rx_buffer[RX_BUFFER_SIZE - 2] << 8) | rx_buffer[RX_BUFFER_SIZE - 1]; 
+		uint16_t crc = mbCRCCalc( rx_buffer, RX_BUFFER_SIZE - 2 ); */	
+		
+		/* last 2 bytes of received message are read, not last 2 bytes of rx_buffer! (compare with the code above, comment as error) */
+		rx_crc_field = (rx_buffer[rx_buf_index - 2] << 8) | rx_buffer[rx_buf_index - 1];
+ 1f4:	ae 01       	movw	r20, r28
+ 1f6:	4a 5f       	subi	r20, 0xFA	; 250
+ 1f8:	5e 4f       	sbci	r21, 0xFE	; 254
+ 1fa:	fa 01       	movw	r30, r20
+ 1fc:	32 97       	sbiw	r30, 0x02	; 2
+		/* calculation of the checksum of the received message*/
+		uint16_t crc = mbCRCCalc( rx_buffer, rx_buf_index - 2 );		
+		
+		/* Compare the calculated checksum with the received */
+		if (crc == rx_crc_field) return 1; // CRC is OK -> normal reply
+ 1fe:	20 81       	ld	r18, Z
+ 200:	30 e0       	ldi	r19, 0x00	; 0
+ 202:	32 2f       	mov	r19, r18
+ 204:	22 27       	eor	r18, r18
+		/* error: 
+		uint16_t rx_crc_field = (rx_buffer[RX_BUFFER_SIZE - 2] << 8) | rx_buffer[RX_BUFFER_SIZE - 1]; 
+		uint16_t crc = mbCRCCalc( rx_buffer, RX_BUFFER_SIZE - 2 ); */	
+		
+		/* last 2 bytes of received message are read, not last 2 bytes of rx_buffer! (compare with the code above, comment as error) */
+		rx_crc_field = (rx_buffer[rx_buf_index - 2] << 8) | rx_buffer[rx_buf_index - 1];
+ 206:	31 96       	adiw	r30, 0x01	; 1
+		/* calculation of the checksum of the received message*/
+		uint16_t crc = mbCRCCalc( rx_buffer, rx_buf_index - 2 );		
+		
+		/* Compare the calculated checksum with the received */
+		if (crc == rx_crc_field) return 1; // CRC is OK -> normal reply
+ 208:	40 81       	ld	r20, Z
+ 20a:	24 2b       	or	r18, r20
+ 20c:	41 e0       	ldi	r20, 0x01	; 1
+ 20e:	28 17       	cp	r18, r24
+ 210:	39 07       	cpc	r19, r25
+ 212:	19 f0       	breq	.+6      	; 0x21a <mbFrameCheck+0x44>
+ 214:	40 e0       	ldi	r20, 0x00	; 0
+ 216:	01 c0       	rjmp	.+2      	; 0x21a <mbFrameCheck+0x44>
+		else                     return 0; // CRC is not OK  -> ignore message		
+	}
+
+	/* The message is not addressed to me. Ignore message */
+	else return -1; 	
+ 218:	4f ef       	ldi	r20, 0xFF	; 255
+
+}
+ 21a:	84 2f       	mov	r24, r20
+ 21c:	df 91       	pop	r29
+ 21e:	cf 91       	pop	r28
+ 220:	08 95       	ret
+
+00000222 <mbFun03Execution>:
+ *           ID|FUN_number|error code|exception code| CRC low |CRC high 
+ *
+ *@note     tx_buffer is a global array, declared in modbus.h
+ */
+void mbFun03Execution (void)
+{
+ 222:	cf 93       	push	r28
+ 224:	df 93       	push	r29
+	/* The first 2 bytes of the response are always the same (in normal reply and in the error reply) */
+	/* so at the beginning we write them in the response buffer (tx_buffer) */
+	tx_buffer[0] = SLAVE_ID;
+ 226:	aa e6       	ldi	r26, 0x6A	; 106
+ 228:	b1 e0       	ldi	r27, 0x01	; 1
+ 22a:	83 e0       	ldi	r24, 0x03	; 3
+ 22c:	8c 93       	st	X, r24
+	tx_buffer[1] = FUNCTION_FIELD;
+ 22e:	e6 e0       	ldi	r30, 0x06	; 6
+ 230:	f1 e0       	ldi	r31, 0x01	; 1
+ 232:	81 81       	ldd	r24, Z+1	; 0x01
+ 234:	11 96       	adiw	r26, 0x01	; 1
+ 236:	8c 93       	st	X, r24
+
+	/* Read the starting address */
+	uint16_t starting_adr = rx_buffer[2]<<8 | rx_buffer[3];
+ 238:	a2 81       	ldd	r26, Z+2	; 0x02
+ 23a:	b0 e0       	ldi	r27, 0x00	; 0
+ 23c:	ba 2f       	mov	r27, r26
+ 23e:	aa 27       	eor	r26, r26
+ 240:	83 81       	ldd	r24, Z+3	; 0x03
+ 242:	a8 2b       	or	r26, r24
+	uint16_t num_of_reg   = rx_buffer[4]<<8 | rx_buffer[5];
+	
+	/* if the addresses of all the registers do not lie in the available address space then answer error*/
+	if ( (starting_adr < 0) || (starting_adr >= uint16_reg_array_len) || ((starting_adr+num_of_reg) > uint16_reg_array_len) ){
+ 244:	ad 32       	cpi	r26, 0x2D	; 45
+ 246:	b1 05       	cpc	r27, r1
+ 248:	60 f4       	brcc	.+24     	; 0x262 <mbFun03Execution+0x40>
+	tx_buffer[0] = SLAVE_ID;
+	tx_buffer[1] = FUNCTION_FIELD;
+
+	/* Read the starting address */
+	uint16_t starting_adr = rx_buffer[2]<<8 | rx_buffer[3];
+	uint16_t num_of_reg   = rx_buffer[4]<<8 | rx_buffer[5];
+ 24a:	44 81       	ldd	r20, Z+4	; 0x04
+ 24c:	50 e0       	ldi	r21, 0x00	; 0
+ 24e:	54 2f       	mov	r21, r20
+ 250:	44 27       	eor	r20, r20
+ 252:	85 81       	ldd	r24, Z+5	; 0x05
+ 254:	48 2b       	or	r20, r24
+ 256:	9a 01       	movw	r18, r20
+	
+	/* if the addresses of all the registers do not lie in the available address space then answer error*/
+	if ( (starting_adr < 0) || (starting_adr >= uint16_reg_array_len) || ((starting_adr+num_of_reg) > uint16_reg_array_len) ){
+ 258:	cd 01       	movw	r24, r26
+ 25a:	84 0f       	add	r24, r20
+ 25c:	95 1f       	adc	r25, r21
+ 25e:	8e 97       	sbiw	r24, 0x2e	; 46
+ 260:	80 f0       	brcs	.+32     	; 0x282 <mbFun03Execution+0x60>
+		tx_buffer[2] = 0x83;  // error code
+ 262:	ca e6       	ldi	r28, 0x6A	; 106
+ 264:	d1 e0       	ldi	r29, 0x01	; 1
+ 266:	83 e8       	ldi	r24, 0x83	; 131
+ 268:	8a 83       	std	Y+2, r24	; 0x02
+		tx_buffer[3] = 0x02;  // exception code
+ 26a:	82 e0       	ldi	r24, 0x02	; 2
+ 26c:	8b 83       	std	Y+3, r24	; 0x03
+		uint16_t crc_of_respond_msg = mbCRCCalc( tx_buffer, 4 );
+ 26e:	64 e0       	ldi	r22, 0x04	; 4
+ 270:	ce 01       	movw	r24, r28
+ 272:	0e 94 c4 00 	call	0x188	; 0x188 <mbCRCCalc>
+		tx_buffer[4] =  (crc_of_respond_msg >> 8) & 0xFF;
+ 276:	9c 83       	std	Y+4, r25	; 0x04
+		tx_buffer[5] =  crc_of_respond_msg & 0xFF;
+ 278:	8d 83       	std	Y+5, r24	; 0x05
+		tx_buf_bytes_number = 6;
+ 27a:	86 e0       	ldi	r24, 0x06	; 6
+ 27c:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <tx_buf_bytes_number>
+		return;	
+ 280:	31 c0       	rjmp	.+98     	; 0x2e4 <mbFun03Execution+0xc2>
+	}
+	
+	else{ // if start adr is ok, and num of byte is ok -> sending requested registers
+		tx_buffer[2] = (2 * num_of_reg) & 0xFF; // num of bytes
+ 282:	84 2f       	mov	r24, r20
+ 284:	88 0f       	add	r24, r24
+ 286:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <tx_buffer+0x2>
+		
+		uint8_t k =0; // index_step_counter		
+		for (uint16_t j = 0; j < num_of_reg; j++){
+ 28a:	23 2b       	or	r18, r19
+ 28c:	c9 f0       	breq	.+50     	; 0x2c0 <mbFun03Execution+0x9e>
+ 28e:	aa 0f       	add	r26, r26
+ 290:	bb 1f       	adc	r27, r27
+ 292:	a2 53       	subi	r26, 0x32	; 50
+ 294:	be 4f       	sbci	r27, 0xFE	; 254
+ 296:	ed e6       	ldi	r30, 0x6D	; 109
+ 298:	f1 e0       	ldi	r31, 0x01	; 1
+ 29a:	9a 01       	movw	r18, r20
+ 29c:	22 0f       	add	r18, r18
+ 29e:	33 1f       	adc	r19, r19
+ 2a0:	23 59       	subi	r18, 0x93	; 147
+ 2a2:	3e 4f       	sbci	r19, 0xFE	; 254
+			/* first 3 bytes of response frame is a system information: 
+			ID, function number, number of bytes (number of registers * 2).
+			Therefore, indexing the area of the tx_buffer where the registers will be written starts with 3 */
+			
+			tx_buffer[3+k]= (uint16_reg_array[starting_adr+j] >> 8) & 0xFF;
+ 2a4:	8c 91       	ld	r24, X
+ 2a6:	11 96       	adiw	r26, 0x01	; 1
+ 2a8:	9c 91       	ld	r25, X
+ 2aa:	11 97       	sbiw	r26, 0x01	; 1
+ 2ac:	12 96       	adiw	r26, 0x02	; 2
+ 2ae:	90 83       	st	Z, r25
+			tx_buffer[3+k+1]= uint16_reg_array[starting_adr+j] & 0xFF;
+ 2b0:	81 83       	std	Z+1, r24	; 0x01
+ 2b2:	32 96       	adiw	r30, 0x02	; 2
+	
+	else{ // if start adr is ok, and num of byte is ok -> sending requested registers
+		tx_buffer[2] = (2 * num_of_reg) & 0xFF; // num of bytes
+		
+		uint8_t k =0; // index_step_counter		
+		for (uint16_t j = 0; j < num_of_reg; j++){
+ 2b4:	e2 17       	cp	r30, r18
+ 2b6:	f3 07       	cpc	r31, r19
+ 2b8:	a9 f7       	brne	.-22     	; 0x2a4 <mbFun03Execution+0x82>
+ 2ba:	c4 2f       	mov	r28, r20
+ 2bc:	cc 0f       	add	r28, r28
+ 2be:	01 c0       	rjmp	.+2      	; 0x2c2 <mbFun03Execution+0xa0>
+	}
+	
+	else{ // if start adr is ok, and num of byte is ok -> sending requested registers
+		tx_buffer[2] = (2 * num_of_reg) & 0xFF; // num of bytes
+		
+		uint8_t k =0; // index_step_counter		
+ 2c0:	c0 e0       	ldi	r28, 0x00	; 0
+			tx_buffer[3+k]= (uint16_reg_array[starting_adr+j] >> 8) & 0xFF;
+			tx_buffer[3+k+1]= uint16_reg_array[starting_adr+j] & 0xFF;
+			k = k + 2; // since the register is a double byte number
+		}
+		
+		uint16_t crc_of_respond_msg = mbCRCCalc( tx_buffer, 3 + tx_buffer[2] ); // (3 + tx_buffer[2]) - message length up to checksum bytes
+ 2c2:	60 91 6c 01 	lds	r22, 0x016C	; 0x80016c <tx_buffer+0x2>
+ 2c6:	6d 5f       	subi	r22, 0xFD	; 253
+ 2c8:	8a e6       	ldi	r24, 0x6A	; 106
+ 2ca:	91 e0       	ldi	r25, 0x01	; 1
+ 2cc:	0e 94 c4 00 	call	0x188	; 0x188 <mbCRCCalc>
+		/* At the last iteration of the loop, changing the counter "k" was the last operation. 
+		Therefore, the counter "3+k" contains the index of the next cell in the array*/
+		tx_buffer[3 + k] =  (crc_of_respond_msg >> 8) & 0xFF;
+ 2d0:	ec 2f       	mov	r30, r28
+ 2d2:	f0 e0       	ldi	r31, 0x00	; 0
+ 2d4:	e6 59       	subi	r30, 0x96	; 150
+ 2d6:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2d8:	93 83       	std	Z+3, r25	; 0x03
+		tx_buffer[3 + k+1] =  crc_of_respond_msg & 0xFF;
+ 2da:	84 83       	std	Z+4, r24	; 0x04
+		k = k + 2;
+		
+		tx_buf_bytes_number = 3 + k; // total length of the response message
+ 2dc:	45 e0       	ldi	r20, 0x05	; 5
+ 2de:	4c 0f       	add	r20, r28
+ 2e0:	40 93 03 01 	sts	0x0103, r20	; 0x800103 <tx_buf_bytes_number>
+		/* This variable is necessary to send only the generated message. 
+		Since the answer can be of different lengths, 
+		and the size of the buffer is designed for a response of maximum length.
+		This variable is global and is used in the body of the interrupt handler when the byte is sent by UART*/
+	}	
+}
+ 2e4:	df 91       	pop	r29
+ 2e6:	cf 91       	pop	r28
+ 2e8:	08 95       	ret
+
+000002ea <mbFun06Execution>:
+ *           ID|FUN_number|error code|exception code| CRC low |CRC high 
+ *
+ *@note     tx_buffer is a global array, declared in modbus.h
+ */
+void mbFun06Execution (void)
+{
+ 2ea:	cf 93       	push	r28
+ 2ec:	df 93       	push	r29
+	uint16_t reg_adr = rx_buffer[2]<<8 | rx_buffer[3];
+ 2ee:	e6 e0       	ldi	r30, 0x06	; 6
+ 2f0:	f1 e0       	ldi	r31, 0x01	; 1
+ 2f2:	82 81       	ldd	r24, Z+2	; 0x02
+ 2f4:	90 e0       	ldi	r25, 0x00	; 0
+ 2f6:	98 2f       	mov	r25, r24
+ 2f8:	88 27       	eor	r24, r24
+ 2fa:	23 81       	ldd	r18, Z+3	; 0x03
+ 2fc:	82 2b       	or	r24, r18
+	uint16_t value   = rx_buffer[4]<<8 | rx_buffer[5];
+	/* target register address is not in the area where uint16_t variables are located - > response with error */
+	if (reg_adr >= MB_REG_ADR_FLOAT_BEGINING){ 
+ 2fe:	85 30       	cpi	r24, 0x05	; 5
+ 300:	91 05       	cpc	r25, r1
+ 302:	a8 f0       	brcs	.+42     	; 0x32e <mbFun06Execution+0x44>
+		tx_buffer[0] = SLAVE_ID;
+ 304:	ca e6       	ldi	r28, 0x6A	; 106
+ 306:	d1 e0       	ldi	r29, 0x01	; 1
+ 308:	83 e0       	ldi	r24, 0x03	; 3
+ 30a:	88 83       	st	Y, r24
+		tx_buffer[1] = FUNCTION_FIELD;
+ 30c:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <rx_buffer+0x1>
+ 310:	89 83       	std	Y+1, r24	; 0x01
+		tx_buffer[2] = 0x86;
+ 312:	86 e8       	ldi	r24, 0x86	; 134
+ 314:	8a 83       	std	Y+2, r24	; 0x02
+		tx_buffer[3] = 0x02;
+ 316:	82 e0       	ldi	r24, 0x02	; 2
+ 318:	8b 83       	std	Y+3, r24	; 0x03
+		
+		uint16_t crc_of_respond_msg = mbCRCCalc( tx_buffer, 4 );
+ 31a:	64 e0       	ldi	r22, 0x04	; 4
+ 31c:	ce 01       	movw	r24, r28
+ 31e:	0e 94 c4 00 	call	0x188	; 0x188 <mbCRCCalc>
+		tx_buffer[4] =  (crc_of_respond_msg >> 8) & 0xFF;
+ 322:	9c 83       	std	Y+4, r25	; 0x04
+		tx_buffer[5] =  crc_of_respond_msg & 0xFF;
+ 324:	8d 83       	std	Y+5, r24	; 0x05
+		
+		tx_buf_bytes_number = 6;
+ 326:	86 e0       	ldi	r24, 0x06	; 6
+ 328:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <tx_buf_bytes_number>
+		return;		
+ 32c:	29 c0       	rjmp	.+82     	; 0x380 <mbFun06Execution+0x96>
+	}
+	
+	else{ // if everything is ok -> writing a value to an data array and send normal respond 
+		uint16_reg_array[reg_adr] = value;
+ 32e:	88 0f       	add	r24, r24
+ 330:	99 1f       	adc	r25, r25
+ 332:	fc 01       	movw	r30, r24
+ 334:	e2 53       	subi	r30, 0x32	; 50
+ 336:	fe 4f       	sbci	r31, 0xFE	; 254
+ *@note     tx_buffer is a global array, declared in modbus.h
+ */
+void mbFun06Execution (void)
+{
+	uint16_t reg_adr = rx_buffer[2]<<8 | rx_buffer[3];
+	uint16_t value   = rx_buffer[4]<<8 | rx_buffer[5];
+ 338:	a6 e0       	ldi	r26, 0x06	; 6
+ 33a:	b1 e0       	ldi	r27, 0x01	; 1
+		tx_buf_bytes_number = 6;
+		return;		
+	}
+	
+	else{ // if everything is ok -> writing a value to an data array and send normal respond 
+		uint16_reg_array[reg_adr] = value;
+ 33c:	14 96       	adiw	r26, 0x04	; 4
+ 33e:	8c 91       	ld	r24, X
+ 340:	14 97       	sbiw	r26, 0x04	; 4
+ 342:	90 e0       	ldi	r25, 0x00	; 0
+ 344:	98 2f       	mov	r25, r24
+ 346:	88 27       	eor	r24, r24
+ 348:	15 96       	adiw	r26, 0x05	; 5
+ 34a:	2c 91       	ld	r18, X
+ 34c:	15 97       	sbiw	r26, 0x05	; 5
+ 34e:	82 2b       	or	r24, r18
+ 350:	91 83       	std	Z+1, r25	; 0x01
+ 352:	80 83       	st	Z, r24
+ 354:	fd 01       	movw	r30, r26
+ 356:	aa e6       	ldi	r26, 0x6A	; 106
+ 358:	b1 e0       	ldi	r27, 0x01	; 1
+ 35a:	2c e0       	ldi	r18, 0x0C	; 12
+ 35c:	31 e0       	ldi	r19, 0x01	; 1
+				
+		for (uint16_t j = 0; j < 6; j++){
+			tx_buffer[j]= rx_buffer[j];
+ 35e:	81 91       	ld	r24, Z+
+ 360:	8d 93       	st	X+, r24
+	}
+	
+	else{ // if everything is ok -> writing a value to an data array and send normal respond 
+		uint16_reg_array[reg_adr] = value;
+				
+		for (uint16_t j = 0; j < 6; j++){
+ 362:	e2 17       	cp	r30, r18
+ 364:	f3 07       	cpc	r31, r19
+ 366:	d9 f7       	brne	.-10     	; 0x35e <mbFun06Execution+0x74>
+			tx_buffer[j]= rx_buffer[j];
+		}
+		
+		uint16_t crc_of_respond_msg = mbCRCCalc( tx_buffer, 6 );
+ 368:	66 e0       	ldi	r22, 0x06	; 6
+ 36a:	8a e6       	ldi	r24, 0x6A	; 106
+ 36c:	91 e0       	ldi	r25, 0x01	; 1
+ 36e:	0e 94 c4 00 	call	0x188	; 0x188 <mbCRCCalc>
+		tx_buffer[6] =  (crc_of_respond_msg >> 8) & 0xFF;
+ 372:	ea e6       	ldi	r30, 0x6A	; 106
+ 374:	f1 e0       	ldi	r31, 0x01	; 1
+ 376:	96 83       	std	Z+6, r25	; 0x06
+		tx_buffer[7] =  crc_of_respond_msg & 0xFF;
+ 378:	87 83       	std	Z+7, r24	; 0x07
+		
+		tx_buf_bytes_number = 8;
+ 37a:	88 e0       	ldi	r24, 0x08	; 8
+ 37c:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <tx_buf_bytes_number>
+	}
+}
+ 380:	df 91       	pop	r29
+ 382:	cf 91       	pop	r28
+ 384:	08 95       	ret
+
+00000386 <mbFun10Execution>:
+ *           ID|FUN_number|error code|exception code| CRC low |CRC high 
+ *
+ *@note     tx_buffer is a global array, declared in modbus.h
+ */
+void mbFun10Execution (void)
+{
+ 386:	8f 92       	push	r8
+ 388:	9f 92       	push	r9
+ 38a:	af 92       	push	r10
+ 38c:	bf 92       	push	r11
+ 38e:	df 92       	push	r13
+ 390:	ef 92       	push	r14
+ 392:	ff 92       	push	r15
+ 394:	0f 93       	push	r16
+ 396:	1f 93       	push	r17
+ 398:	cf 93       	push	r28
+ 39a:	df 93       	push	r29
+	uint8_t k =0; // index_step_counter
+	uint16_t starting_adr = rx_buffer[2]<<8 | rx_buffer[3];
+ 39c:	e6 e0       	ldi	r30, 0x06	; 6
+ 39e:	f1 e0       	ldi	r31, 0x01	; 1
+ 3a0:	22 81       	ldd	r18, Z+2	; 0x02
+ 3a2:	30 e0       	ldi	r19, 0x00	; 0
+ 3a4:	32 2f       	mov	r19, r18
+ 3a6:	22 27       	eor	r18, r18
+ 3a8:	83 81       	ldd	r24, Z+3	; 0x03
+ 3aa:	28 2b       	or	r18, r24
+	uint16_t num_of_reg   = rx_buffer[4]<<8 | rx_buffer[5];
+	uint8_t  num_of_bytes = rx_buffer[6];
+	/* if the address of at least one register is out of the available range of address space then respond with erorr message */
+	if ( (starting_adr < 0) || (starting_adr >= uint16_reg_array_len) || ((starting_adr+num_of_reg) > uint16_reg_array_len) ){ 
+ 3ac:	2d 32       	cpi	r18, 0x2D	; 45
+ 3ae:	31 05       	cpc	r19, r1
+ 3b0:	90 f4       	brcc	.+36     	; 0x3d6 <mbFun10Execution+0x50>
+ 3b2:	84 81       	ldd	r24, Z+4	; 0x04
+ 3b4:	90 e0       	ldi	r25, 0x00	; 0
+ 3b6:	98 2f       	mov	r25, r24
+ 3b8:	88 27       	eor	r24, r24
+ 3ba:	45 81       	ldd	r20, Z+5	; 0x05
+ 3bc:	84 2b       	or	r24, r20
+ 3be:	82 0f       	add	r24, r18
+ 3c0:	93 1f       	adc	r25, r19
+ 3c2:	8e 97       	sbiw	r24, 0x2e	; 46
+ 3c4:	40 f4       	brcc	.+16     	; 0x3d6 <mbFun10Execution+0x50>
+	}
+	/* If the addresses of all the registers are in the available range of the address space, 
+	then the values of the registers are written to the data array and a normal response is generated */
+	else{
+		/* record new values to "uint16_reg_array" - modbas dataset */
+		for (uint16_t j = 0; j < num_of_bytes; j=j+2){
+ 3c6:	00 91 0c 01 	lds	r16, 0x010C	; 0x80010c <rx_buffer+0x6>
+ 3ca:	a0 2e       	mov	r10, r16
+ 3cc:	b1 2c       	mov	r11, r1
+ 3ce:	a1 14       	cp	r10, r1
+ 3d0:	b1 04       	cpc	r11, r1
+ 3d2:	b1 f4       	brne	.+44     	; 0x400 <__LOCK_REGION_LENGTH__>
+ 3d4:	6e c0       	rjmp	.+220    	; 0x4b2 <__LOCK_REGION_LENGTH__+0xb2>
+	uint16_t starting_adr = rx_buffer[2]<<8 | rx_buffer[3];
+	uint16_t num_of_reg   = rx_buffer[4]<<8 | rx_buffer[5];
+	uint8_t  num_of_bytes = rx_buffer[6];
+	/* if the address of at least one register is out of the available range of address space then respond with erorr message */
+	if ( (starting_adr < 0) || (starting_adr >= uint16_reg_array_len) || ((starting_adr+num_of_reg) > uint16_reg_array_len) ){ 
+		tx_buffer[0] = SLAVE_ID;
+ 3d6:	ca e6       	ldi	r28, 0x6A	; 106
+ 3d8:	d1 e0       	ldi	r29, 0x01	; 1
+ 3da:	83 e0       	ldi	r24, 0x03	; 3
+ 3dc:	88 83       	st	Y, r24
+		tx_buffer[1] = FUNCTION_FIELD;
+ 3de:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <rx_buffer+0x1>
+ 3e2:	89 83       	std	Y+1, r24	; 0x01
+		tx_buffer[2] = 0x90;
+ 3e4:	80 e9       	ldi	r24, 0x90	; 144
+ 3e6:	8a 83       	std	Y+2, r24	; 0x02
+		tx_buffer[3] = 0x02;
+ 3e8:	82 e0       	ldi	r24, 0x02	; 2
+ 3ea:	8b 83       	std	Y+3, r24	; 0x03
+		
+		uint16_t crc_of_respond_msg = mbCRCCalc( tx_buffer, 4 );
+ 3ec:	64 e0       	ldi	r22, 0x04	; 4
+ 3ee:	ce 01       	movw	r24, r28
+ 3f0:	0e 94 c4 00 	call	0x188	; 0x188 <mbCRCCalc>
+		tx_buffer[4] =  (crc_of_respond_msg >> 8) & 0xFF;
+ 3f4:	9c 83       	std	Y+4, r25	; 0x04
+		tx_buffer[5] =  crc_of_respond_msg & 0xFF;
+ 3f6:	8d 83       	std	Y+5, r24	; 0x05
+		
+		tx_buf_bytes_number = 6;
+ 3f8:	86 e0       	ldi	r24, 0x06	; 6
+ 3fa:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <tx_buf_bytes_number>
+		return;		
+ 3fe:	60 c0       	rjmp	.+192    	; 0x4c0 <__LOCK_REGION_LENGTH__+0xc0>
+ 400:	ad e0       	ldi	r26, 0x0D	; 13
+ 402:	b1 e0       	ldi	r27, 0x01	; 1
+ 404:	e9 01       	movw	r28, r18
+ 406:	cc 0f       	add	r28, r28
+ 408:	dd 1f       	adc	r29, r29
+ 40a:	fe 01       	movw	r30, r28
+ 40c:	e2 53       	subi	r30, 0x32	; 50
+ 40e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 410:	a9 01       	movw	r20, r18
+ 412:	44 0f       	add	r20, r20
+ 414:	55 1f       	adc	r21, r21
+ 416:	44 0f       	add	r20, r20
+ 418:	55 1f       	adc	r21, r21
+ 41a:	45 5e       	subi	r20, 0xE5	; 229
+ 41c:	5d 4f       	sbci	r21, 0xFD	; 253
+ 41e:	ce 01       	movw	r24, r28
+ 420:	88 5d       	subi	r24, 0xD8	; 216
+ 422:	9d 4f       	sbci	r25, 0xFD	; 253
+ 424:	4c 01       	movw	r8, r24
+	}
+	/* If the addresses of all the registers are in the available range of the address space, 
+	then the values of the registers are written to the data array and a normal response is generated */
+	else{
+		/* record new values to "uint16_reg_array" - modbas dataset */
+		for (uint16_t j = 0; j < num_of_bytes; j=j+2){
+ 426:	60 e0       	ldi	r22, 0x00	; 0
+ 428:	70 e0       	ldi	r23, 0x00	; 0
+			uint16_reg_array[starting_adr + k] = rx_buffer[7 + j]<<8 | rx_buffer[7 + j + 1];
+ 42a:	8c 91       	ld	r24, X
+ 42c:	90 e0       	ldi	r25, 0x00	; 0
+ 42e:	98 2f       	mov	r25, r24
+ 430:	88 27       	eor	r24, r24
+ 432:	11 96       	adiw	r26, 0x01	; 1
+ 434:	fc 90       	ld	r15, X
+ 436:	11 97       	sbiw	r26, 0x01	; 1
+ 438:	8f 29       	or	r24, r15
+ 43a:	80 83       	st	Z, r24
+ 43c:	91 83       	std	Z+1, r25	; 0x01
+ 43e:	32 96       	adiw	r30, 0x02	; 2
+			if ((starting_adr + k) >= MB_REG_ADR_FLOAT_BEGINING){
+ 440:	25 30       	cpi	r18, 0x05	; 5
+ 442:	31 05       	cpc	r19, r1
+ 444:	98 f0       	brcs	.+38     	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+				if (((starting_adr + k - MB_REG_ADR_FLOAT_BEGINING) % 2) != 0){
+ 446:	79 01       	movw	r14, r18
+ 448:	c5 e0       	ldi	r28, 0x05	; 5
+ 44a:	ec 1a       	sub	r14, r28
+ 44c:	f1 08       	sbc	r15, r1
+ 44e:	e0 fe       	sbrs	r14, 0
+ 450:	10 c0       	rjmp	.+32     	; 0x472 <__LOCK_REGION_LENGTH__+0x72>
+					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[0] = uint16_reg_array[starting_adr + k - 1] >> 8;
+ 452:	7f 01       	movw	r14, r30
+ 454:	d4 e0       	ldi	r29, 0x04	; 4
+ 456:	ed 1a       	sub	r14, r29
+ 458:	f1 08       	sbc	r15, r1
+ 45a:	e7 01       	movw	r28, r14
+ 45c:	d8 80       	ld	r13, Y
+ 45e:	f9 80       	ldd	r15, Y+1	; 0x01
+ 460:	ea 01       	movw	r28, r20
+ 462:	f8 82       	st	Y, r15
+					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[1] = uint16_reg_array[starting_adr + k - 1] & 0xFF;
+ 464:	d9 82       	std	Y+1, r13	; 0x01
+					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[2] = uint16_reg_array[starting_adr + k] >> 8;
+ 466:	9a 83       	std	Y+2, r25	; 0x02
+					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[3] = uint16_reg_array[starting_adr + k] & 0xFF;
+ 468:	8b 83       	std	Y+3, r24	; 0x03
+ 46a:	03 c0       	rjmp	.+6      	; 0x472 <__LOCK_REGION_LENGTH__+0x72>
+				}				
+			}
+			else{
+				mb_uint16_variables_arr[starting_adr + k] = uint16_reg_array[starting_adr + k];
+ 46c:	e4 01       	movw	r28, r8
+ 46e:	88 83       	st	Y, r24
+ 470:	99 83       	std	Y+1, r25	; 0x01
+	}
+	/* If the addresses of all the registers are in the available range of the address space, 
+	then the values of the registers are written to the data array and a normal response is generated */
+	else{
+		/* record new values to "uint16_reg_array" - modbas dataset */
+		for (uint16_t j = 0; j < num_of_bytes; j=j+2){
+ 472:	6e 5f       	subi	r22, 0xFE	; 254
+ 474:	7f 4f       	sbci	r23, 0xFF	; 255
+ 476:	12 96       	adiw	r26, 0x02	; 2
+ 478:	2f 5f       	subi	r18, 0xFF	; 255
+ 47a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 47c:	4c 5f       	subi	r20, 0xFC	; 252
+ 47e:	5f 4f       	sbci	r21, 0xFF	; 255
+ 480:	d2 e0       	ldi	r29, 0x02	; 2
+ 482:	8d 0e       	add	r8, r29
+ 484:	91 1c       	adc	r9, r1
+ 486:	6a 15       	cp	r22, r10
+ 488:	7b 05       	cpc	r23, r11
+ 48a:	78 f2       	brcs	.-98     	; 0x42a <__LOCK_REGION_LENGTH__+0x2a>
+ 48c:	12 c0       	rjmp	.+36     	; 0x4b2 <__LOCK_REGION_LENGTH__+0xb2>
+			
+			k++;
+		}
+		/* Normal response copies the request completely */
+		for (uint16_t j = 0; j < 6; j++){
+			tx_buffer[j]= rx_buffer[j];
+ 48e:	81 91       	ld	r24, Z+
+ 490:	8d 93       	st	X+, r24
+			}
+			
+			k++;
+		}
+		/* Normal response copies the request completely */
+		for (uint16_t j = 0; j < 6; j++){
+ 492:	e2 17       	cp	r30, r18
+ 494:	f3 07       	cpc	r31, r19
+ 496:	d9 f7       	brne	.-10     	; 0x48e <__LOCK_REGION_LENGTH__+0x8e>
+		}
+		
+		
+		
+		
+		uint16_t crc_of_respond_msg = mbCRCCalc( tx_buffer, 6 );
+ 498:	66 e0       	ldi	r22, 0x06	; 6
+ 49a:	8a e6       	ldi	r24, 0x6A	; 106
+ 49c:	91 e0       	ldi	r25, 0x01	; 1
+ 49e:	0e 94 c4 00 	call	0x188	; 0x188 <mbCRCCalc>
+		tx_buffer[6] =  (crc_of_respond_msg >> 8) & 0xFF;
+ 4a2:	ea e6       	ldi	r30, 0x6A	; 106
+ 4a4:	f1 e0       	ldi	r31, 0x01	; 1
+ 4a6:	96 83       	std	Z+6, r25	; 0x06
+		tx_buffer[7] =  crc_of_respond_msg & 0xFF;
+ 4a8:	87 83       	std	Z+7, r24	; 0x07
+		
+		tx_buf_bytes_number = 8;
+ 4aa:	88 e0       	ldi	r24, 0x08	; 8
+ 4ac:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <tx_buf_bytes_number>
+ 4b0:	07 c0       	rjmp	.+14     	; 0x4c0 <__LOCK_REGION_LENGTH__+0xc0>
+ 4b2:	e6 e0       	ldi	r30, 0x06	; 6
+ 4b4:	f1 e0       	ldi	r31, 0x01	; 1
+ 4b6:	aa e6       	ldi	r26, 0x6A	; 106
+ 4b8:	b1 e0       	ldi	r27, 0x01	; 1
+ 4ba:	2c e0       	ldi	r18, 0x0C	; 12
+ 4bc:	31 e0       	ldi	r19, 0x01	; 1
+ 4be:	e7 cf       	rjmp	.-50     	; 0x48e <__LOCK_REGION_LENGTH__+0x8e>
+	}	
+}
+ 4c0:	df 91       	pop	r29
+ 4c2:	cf 91       	pop	r28
+ 4c4:	1f 91       	pop	r17
+ 4c6:	0f 91       	pop	r16
+ 4c8:	ff 90       	pop	r15
+ 4ca:	ef 90       	pop	r14
+ 4cc:	df 90       	pop	r13
+ 4ce:	bf 90       	pop	r11
+ 4d0:	af 90       	pop	r10
+ 4d2:	9f 90       	pop	r9
+ 4d4:	8f 90       	pop	r8
+ 4d6:	08 95       	ret
+
+000004d8 <mbReplyProcessing>:
+ *          in which the modbus function number is stored. 
+ *          And calls the corresponding handler (mbFun03Execution, mbFun06Execution, mbFun10Execution) 
+ */
+void mbReplyProcessing ( void ){
+	
+		if ( FUNCTION_FIELD == 0x03 )  mbFun03Execution();
+ 4d8:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <rx_buffer+0x1>
+ 4dc:	83 30       	cpi	r24, 0x03	; 3
+ 4de:	11 f4       	brne	.+4      	; 0x4e4 <mbReplyProcessing+0xc>
+ 4e0:	0e 94 11 01 	call	0x222	; 0x222 <mbFun03Execution>
+		if ( FUNCTION_FIELD == 0x06 )  mbFun06Execution ();		
+ 4e4:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <rx_buffer+0x1>
+ 4e8:	86 30       	cpi	r24, 0x06	; 6
+ 4ea:	11 f4       	brne	.+4      	; 0x4f0 <mbReplyProcessing+0x18>
+ 4ec:	0e 94 75 01 	call	0x2ea	; 0x2ea <mbFun06Execution>
+		if ( FUNCTION_FIELD == 0x10 )  mbFun10Execution ();	
+ 4f0:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <rx_buffer+0x1>
+ 4f4:	80 31       	cpi	r24, 0x10	; 16
+ 4f6:	11 f4       	brne	.+4      	; 0x4fc <mbReplyProcessing+0x24>
+ 4f8:	0e 94 c3 01 	call	0x386	; 0x386 <mbFun10Execution>
+ 4fc:	08 95       	ret
+
+000004fe <__vector_18>:
+}
+
+/** 
+ *@brief    RX interrupt handler (single byte received) 
+ */
+ISR (USART_RX_vect){
+ 4fe:	1f 92       	push	r1
+ 500:	0f 92       	push	r0
+ 502:	0f b6       	in	r0, 0x3f	; 63
+ 504:	0f 92       	push	r0
+ 506:	11 24       	eor	r1, r1
+ 508:	2f 93       	push	r18
+ 50a:	3f 93       	push	r19
+ 50c:	4f 93       	push	r20
+ 50e:	5f 93       	push	r21
+ 510:	6f 93       	push	r22
+ 512:	7f 93       	push	r23
+ 514:	8f 93       	push	r24
+ 516:	9f 93       	push	r25
+ 518:	af 93       	push	r26
+ 51a:	bf 93       	push	r27
+ 51c:	ef 93       	push	r30
+ 51e:	ff 93       	push	r31
+	/* read operation from hardware register UDR0 */
+	int8_t data = uartReadByte();
+ 520:	0e 94 5f 00 	call	0xbe	; 0xbe <uartReadByte>
+
+	/* If the curent state of modbus state machine is MB_STATE_IDLE
+	then this is the first byte of the package. 
+	Modbus state switches to MB_STATE_RECEPTION
+	In this state, the receive buffer is allowed to fill*/
+	if (MB_STATE == MB_STATE_IDLE){
+ 524:	90 91 32 02 	lds	r25, 0x0232	; 0x800232 <MB_STATE>
+ 528:	91 30       	cpi	r25, 0x01	; 1
+ 52a:	21 f4       	brne	.+8      	; 0x534 <__vector_18+0x36>
+		MB_STATE = MB_STATE_RECEPTION;				
+ 52c:	92 e0       	ldi	r25, 0x02	; 2
+ 52e:	90 93 32 02 	sts	0x0232, r25	; 0x800232 <MB_STATE>
+ 532:	02 c0       	rjmp	.+4      	; 0x538 <__vector_18+0x3a>
+	}	
+	
+	/* Filling receive buffer */
+	if ( MB_STATE == MB_STATE_RECEPTION ){		
+ 534:	92 30       	cpi	r25, 0x02	; 2
+ 536:	59 f4       	brne	.+22     	; 0x54e <__vector_18+0x50>
+		if (rx_buf_index < RX_BUFFER_SIZE){// if rx_buf_index > (RX_BUFFER_SIZE - 1)  then recieve data lost
+ 538:	e0 91 05 01 	lds	r30, 0x0105	; 0x800105 <rx_buf_index>
+ 53c:	e4 36       	cpi	r30, 0x64	; 100
+ 53e:	38 f4       	brcc	.+14     	; 0x54e <__vector_18+0x50>
+			rx_buf_index ++;		
+ 540:	ef 5f       	subi	r30, 0xFF	; 255
+ 542:	e0 93 05 01 	sts	0x0105, r30	; 0x800105 <rx_buf_index>
+			rx_buffer[rx_buf_index] = data; 
+ 546:	f0 e0       	ldi	r31, 0x00	; 0
+ 548:	ea 5f       	subi	r30, 0xFA	; 250
+ 54a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 54c:	80 83       	st	Z, r24
+
+/**
+ *@brief        Function resets Timer 0 counter
+ */
+void timer0ResetCounter (void){
+	TCNT0 = 0;
+ 54e:	16 bc       	out	0x26, r1	; 38
+		}		
+	}
+	/* After each received byte reset timer (which detects t3.5 delay after frame) */
+	timer0ResetCounter(); 	
+}
+ 550:	ff 91       	pop	r31
+ 552:	ef 91       	pop	r30
+ 554:	bf 91       	pop	r27
+ 556:	af 91       	pop	r26
+ 558:	9f 91       	pop	r25
+ 55a:	8f 91       	pop	r24
+ 55c:	7f 91       	pop	r23
+ 55e:	6f 91       	pop	r22
+ 560:	5f 91       	pop	r21
+ 562:	4f 91       	pop	r20
+ 564:	3f 91       	pop	r19
+ 566:	2f 91       	pop	r18
+ 568:	0f 90       	pop	r0
+ 56a:	0f be       	out	0x3f, r0	; 63
+ 56c:	0f 90       	pop	r0
+ 56e:	1f 90       	pop	r1
+ 570:	18 95       	reti
+
+00000572 <__vector_20>:
+/** 
+ *@brief    TX interrupt handler (single byte transmitted)
+ *@note     Initiation of sending does not occur in interruption 
+			The first byte of the response frame must be sent to initiate
+ */
+ISR (USART_TX_vect){
+ 572:	1f 92       	push	r1
+ 574:	0f 92       	push	r0
+ 576:	0f b6       	in	r0, 0x3f	; 63
+ 578:	0f 92       	push	r0
+ 57a:	11 24       	eor	r1, r1
+ 57c:	2f 93       	push	r18
+ 57e:	3f 93       	push	r19
+ 580:	4f 93       	push	r20
+ 582:	5f 93       	push	r21
+ 584:	6f 93       	push	r22
+ 586:	7f 93       	push	r23
+ 588:	8f 93       	push	r24
+ 58a:	9f 93       	push	r25
+ 58c:	af 93       	push	r26
+ 58e:	bf 93       	push	r27
+ 590:	ef 93       	push	r30
+ 592:	ff 93       	push	r31
+		/* Immediately after sending the first byte of the frame, 
+		the program state is switched to MB_STATE_IDLE, which means that the next request is allowed. 
+		Thus, sending a response to a previous request and receiving the next request can occur in parallel */
+		MB_STATE = MB_STATE_IDLE;
+ 594:	81 e0       	ldi	r24, 0x01	; 1
+ 596:	80 93 32 02 	sts	0x0232, r24	; 0x800232 <MB_STATE>
+		
+		/*Only the part of the "tx_buffer" array that contains the response frame is sent.
+		"tx_buf_bytes_number" is total length of the response message
+		Since the answer can be of different lengths, 
+		and the size of the buffer is designed for a response of maximum length.*/
+		if ( tx_buf_index < tx_buf_bytes_number ){			
+ 59a:	e0 91 04 01 	lds	r30, 0x0104	; 0x800104 <tx_buf_index>
+ 59e:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <tx_buf_bytes_number>
+ 5a2:	e8 17       	cp	r30, r24
+ 5a4:	60 f4       	brcc	.+24     	; 0x5be <__vector_20+0x4c>
+			UDR0 = tx_buffer[tx_buf_index]; // if tx_buf_index > (tx_buf_bytes_number - 1)  then  data isn't transmmit further
+ 5a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 5a8:	e6 59       	subi	r30, 0x96	; 150
+ 5aa:	fe 4f       	sbci	r31, 0xFE	; 254
+ 5ac:	80 81       	ld	r24, Z
+ 5ae:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+			tx_buf_index ++;			
+ 5b2:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <tx_buf_index>
+ 5b6:	8f 5f       	subi	r24, 0xFF	; 255
+ 5b8:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <tx_buf_index>
+ 5bc:	19 c0       	rjmp	.+50     	; 0x5f0 <__vector_20+0x7e>
+		else{	
+			/* After the last byte of the response frame sent, the end of transmission flag is set.
+			This flag is necessary to not start processing the next request until the response to the previous request is completely sent. 
+			Since the response handler uses an "tx_buffer" array.
+			So it is a protection of the response message from modification during the sending process, otherwise the response will be distorted */ 
+			transmittion_finish = 1;
+ 5be:	81 e0       	ldi	r24, 0x01	; 1
+ 5c0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__data_start>
+			
+			/* After the last byte of the response frame sent the "tx_buffer" array must be cleaned */
+			mbClearTransmitBuffer();
+ 5c4:	0e 94 85 00 	call	0x10a	; 0x10a <mbClearTransmitBuffer>
+			
+			/* If while the response to the previous request was sent, the next request was accepted, 
+			then you need to start the request handler, generate a response and initiate its transmission */
+			if ( processing_queue ){ 
+ 5c8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
+ 5cc:	88 23       	and	r24, r24
+ 5ce:	81 f0       	breq	.+32     	; 0x5f0 <__vector_20+0x7e>
+				mbReplyProcessing();
+ 5d0:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <mbReplyProcessing>
+				MB_STATE = MB_STATE_EMISSION;
+ 5d4:	83 e0       	ldi	r24, 0x03	; 3
+ 5d6:	80 93 32 02 	sts	0x0232, r24	; 0x800232 <MB_STATE>
+				transmittion_finish = 0; //reset finish flag (means transmission starts).
+ 5da:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__data_start>
+				uartTransmitByte (tx_buffer[0]);
+ 5de:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <tx_buffer>
+void uartTransmitByte(uint8_t data) 
+{
+	/*uint8_t status = UCSR0A;
+	while(!(status & DATA_REGISTER_EMPTY));	
+	*/
+	UDR0 = data;
+ 5e2:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+				tx_buf_index ++;
+ 5e6:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <tx_buf_index>
+ 5ea:	8f 5f       	subi	r24, 0xFF	; 255
+ 5ec:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <tx_buf_index>
+			}						
+		}
+}
+ 5f0:	ff 91       	pop	r31
+ 5f2:	ef 91       	pop	r30
+ 5f4:	bf 91       	pop	r27
+ 5f6:	af 91       	pop	r26
+ 5f8:	9f 91       	pop	r25
+ 5fa:	8f 91       	pop	r24
+ 5fc:	7f 91       	pop	r23
+ 5fe:	6f 91       	pop	r22
+ 600:	5f 91       	pop	r21
+ 602:	4f 91       	pop	r20
+ 604:	3f 91       	pop	r19
+ 606:	2f 91       	pop	r18
+ 608:	0f 90       	pop	r0
+ 60a:	0f be       	out	0x3f, r0	; 63
+ 60c:	0f 90       	pop	r0
+ 60e:	1f 90       	pop	r1
+ 610:	18 95       	reti
+
+00000612 <__vector_14>:
+ *			This interrupt is triggered when the timer calculates to the value 
+ *          corresponding to the time interval of 3.5 characters (at a speed of 19200 bits per second).
+ *          Timer counter is reset after each byte received.
+ *@note     Processing of the received frame occurs in the timer interrupt handler!
+ */
+ISR (TIMER0_COMPA_vect){
+ 612:	1f 92       	push	r1
+ 614:	0f 92       	push	r0
+ 616:	0f b6       	in	r0, 0x3f	; 63
+ 618:	0f 92       	push	r0
+ 61a:	11 24       	eor	r1, r1
+ 61c:	2f 93       	push	r18
+ 61e:	3f 93       	push	r19
+ 620:	4f 93       	push	r20
+ 622:	5f 93       	push	r21
+ 624:	6f 93       	push	r22
+ 626:	7f 93       	push	r23
+ 628:	8f 93       	push	r24
+ 62a:	9f 93       	push	r25
+ 62c:	af 93       	push	r26
+ 62e:	bf 93       	push	r27
+ 630:	ef 93       	push	r30
+ 632:	ff 93       	push	r31
+ 634:	16 bc       	out	0x26, r1	; 38
+	timer0ResetCounter();
+	
+	if ( MB_STATE == MB_STATE_RECEPTION ){		
+ 636:	80 91 32 02 	lds	r24, 0x0232	; 0x800232 <MB_STATE>
+ 63a:	82 30       	cpi	r24, 0x02	; 2
+ 63c:	51 f5       	brne	.+84     	; 0x692 <__vector_14+0x80>
+						
+		MB_STATE = MB_STATE_FRAME_CHECKING;							
+ 63e:	84 e0       	ldi	r24, 0x04	; 4
+ 640:	80 93 32 02 	sts	0x0232, r24	; 0x800232 <MB_STATE>
+		frame_check_result = mbFrameCheck();
+ 644:	0e 94 eb 00 	call	0x1d6	; 0x1d6 <mbFrameCheck>
+ 648:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <frame_check_result>
+					
+		MB_STATE = MB_STATE_PROCESSING_REPLY;			
+ 64c:	95 e0       	ldi	r25, 0x05	; 5
+ 64e:	90 93 32 02 	sts	0x0232, r25	; 0x800232 <MB_STATE>
+		if (frame_check_result == 1){					
+ 652:	81 30       	cpi	r24, 0x01	; 1
+ 654:	c9 f4       	brne	.+50     	; 0x688 <__vector_14+0x76>
+			if ( !transmittion_finish ){
+ 656:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+ 65a:	81 11       	cpse	r24, r1
+ 65c:	04 c0       	rjmp	.+8      	; 0x666 <__vector_14+0x54>
+				/* If the received message passed the frame check (the identifier and the checksum match)
+				 but the response to the previous request has not yet been completely sent, 
+				 then the queue flag for processing the request is set. */
+				processing_queue = 1;			
+ 65e:	81 e0       	ldi	r24, 0x01	; 1
+ 660:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <__data_end>
+				return;		
+ 664:	16 c0       	rjmp	.+44     	; 0x692 <__vector_14+0x80>
+			}	
+			else{
+				mbReplyProcessing();
+ 666:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <mbReplyProcessing>
+				MB_STATE = MB_STATE_EMISSION;
+ 66a:	83 e0       	ldi	r24, 0x03	; 3
+ 66c:	80 93 32 02 	sts	0x0232, r24	; 0x800232 <MB_STATE>
+				transmittion_finish = 0;
+ 670:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__data_start>
+				uartTransmitByte (tx_buffer[0]);
+ 674:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <tx_buffer>
+ 678:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+				tx_buf_index ++;
+ 67c:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <tx_buf_index>
+ 680:	8f 5f       	subi	r24, 0xFF	; 255
+ 682:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <tx_buf_index>
+ 686:	03 c0       	rjmp	.+6      	; 0x68e <__vector_14+0x7c>
+			}				
+		}
+		else{
+			/* If the received message don't passed the frame check (the identifier or the checksum doesn't match)
+			Then ignore request. No response is generated or sent. */
+			MB_STATE = MB_STATE_IDLE;
+ 688:	81 e0       	ldi	r24, 0x01	; 1
+ 68a:	80 93 32 02 	sts	0x0232, r24	; 0x800232 <MB_STATE>
+		}
+		/* Clear receive buffer in all cases! even if slave don't need to reply */
+		mbClearRecieveBuffer ();
+ 68e:	0e 94 7a 00 	call	0xf4	; 0xf4 <mbClearRecieveBuffer>
+	}
+}
+ 692:	ff 91       	pop	r31
+ 694:	ef 91       	pop	r30
+ 696:	bf 91       	pop	r27
+ 698:	af 91       	pop	r26
+ 69a:	9f 91       	pop	r25
+ 69c:	8f 91       	pop	r24
+ 69e:	7f 91       	pop	r23
+ 6a0:	6f 91       	pop	r22
+ 6a2:	5f 91       	pop	r21
+ 6a4:	4f 91       	pop	r20
+ 6a6:	3f 91       	pop	r19
+ 6a8:	2f 91       	pop	r18
+ 6aa:	0f 90       	pop	r0
+ 6ac:	0f be       	out	0x3f, r0	; 63
+ 6ae:	0f 90       	pop	r0
+ 6b0:	1f 90       	pop	r1
+ 6b2:	18 95       	reti
+
+000006b4 <main>:
+int main(void)
+{
+	
+	// Input/Output Ports initialization
+	// Port B initialization -> Led
+	DDRB = (1 << DDB5);
+ 6b4:	80 e2       	ldi	r24, 0x20	; 32
+ 6b6:	84 b9       	out	0x04, r24	; 4
+
+	
+	mbInit();
+ 6b8:	0e 94 90 00 	call	0x120	; 0x120 <mbInit>
+	pwmStart();
+	*/
+	
+	
+	// Globally enable interrupts
+	sei();
+ 6bc:	78 94       	sei
+ 6be:	ff cf       	rjmp	.-2      	; 0x6be <main+0xa>
+
+000006c0 <_exit>:
+ 6c0:	f8 94       	cli
+
+000006c2 <__stop_program>:
+ 6c2:	ff cf       	rjmp	.-2      	; 0x6c2 <__stop_program>
