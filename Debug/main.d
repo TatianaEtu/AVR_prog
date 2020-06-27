@@ -19,7 +19,8 @@ main.d main.o: .././main.c \
  f:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  .././lib_modbus\../lib_periphery\uart.c \
  .././lib_modbus\../lib_periphery\timers.h \
- .././lib_modbus\../lib_periphery\timers.c
+ .././lib_modbus\../lib_periphery\timers.c .././lib_periphery\ADC.h \
+ .././lib_periphery\ADC.c .././lib_periphery\../lib_periphery\common.h
 
 f:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -66,3 +67,9 @@ f:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h
 .././lib_modbus\../lib_periphery\timers.h:
 
 .././lib_modbus\../lib_periphery\timers.c:
+
+.././lib_periphery\ADC.h:
+
+.././lib_periphery\ADC.c:
+
+.././lib_periphery\../lib_periphery\common.h:

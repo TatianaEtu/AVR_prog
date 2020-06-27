@@ -36,25 +36,6 @@ void mbInit(void)
 	uint16_reg_array[MB_ADR_TEMPERATURE] = 278;
 	uint16_reg_array[MB_ADR_TEMPERATURE+1] = 32;
 	*/
-	
-	
-
-	
-	
-
-			
-	/* Timer1 stands for time intervals measurement*/
-	//timer1Init();
-	
-	/* Code to measure time intervals. Put it in that part of the program the runtime of which you want to measure 
-	timer1Start();
-	// ----- block of code ------ //	
-	timer1Stop();
-	test_time.f = timer1GetTimeInterval();
-	timer1ResetCounter();
-	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING +10] = ( test_time.u[0] << 8 ) | ( test_time.u[1] );
-	uint16_reg_array[MB_REG_ADR_FLOAT_BEGINING + 11] = ( test_time.u[2] << 8 ) | ( test_time.u[3] ); */
-	
 }
 
 /**
@@ -122,13 +103,7 @@ uint16_t mbCRCCalc (uint8_t* msg, uint8_t msg_length){
  *			  1 - ID is the same, CRC is OK, 250 is initial value
  */
 int8_t mbFrameCheck( void ){
-	
-	//if (rx_buffer[0] == ADDRESS_FIELD)
-	//{
-		//PORTB = (1<< PORTB5); // set led on
-	//}
-	
-	
+
 	if ( ADDRESS_FIELD == SLAVE_ID ){
 		/*this variable contains the last 2 bytes of received message*/
 		uint16_t rx_crc_field = 0; 
@@ -460,6 +435,8 @@ ISR (TIMER0_COMPA_vect){
 		}
 		/* Clear receive buffer in all cases! even if slave don't need to reply */
 		mbClearRecieveBuffer ();
+		uint16_reg_array[MB_ADR_TEMPERATURE] = 0xAA0B;
+		uint16_reg_array[MB_ADR_TEMPERATURE+1] = 0xBB0A;
 	}
 }
 

@@ -56,7 +56,17 @@ mb_float_type union_arr[20];
 
 
 
-
+/**
+ *@brief    Modbus memory card is an array of uint16_t values.
+ *          In every cell of the array the register is stored.
+ *          Register addresses from 0 to (uint16_reg_array_len-1).
+ *          At the beginning of the array registers of type uint16_t are located, 
+ *          then variables of type float are located (each variable takes 2 registers).    
+ */
+#define uint16_reg_array_len       45  // total number of registers
+#define uint16_var_reg_num         5   // number of float variables
+#define MB_REG_ADR_FLOAT_BEGINING  (uint16_var_reg_num ) // address where float variables start (adress bias)
+uint16_t uint16_reg_array [uint16_reg_array_len]; // modbus registers array
 
 
 

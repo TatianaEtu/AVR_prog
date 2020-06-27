@@ -16,17 +16,18 @@
  */
 void adcInit ( void ){
 	/* ADC Multiplexer Selection Register */
-	/* Bits 7:6 – REFSn: Reference Selection:  AREF, Internal Vref turned off */
+	/* Bits 7:6 – REFSn: Reference Selection:  AVCC with external capacitor at AREF pin */
 	/* Bit 5 – ADLAR: ADC Left Adjust Result */
 	/* Bits 3:0 – MUXn: Analog Channel Selection [n = 3:0] */
-	ADMUX = (0 << REFS1) | (0 << REFS0) | (0 << ADLAR) | (0 << MUX3) | (0 << MUX2) | (0 << MUX1) | (0 << MUX0);
+	ADMUX = (0 << REFS1) | (1 << REFS0) | (0 << ADLAR) | (0 << MUX3) | (0 << MUX2) | (0 << MUX1) | (0 << MUX0);
 	/* ADC Control and Status Register A */
 	/* Bit 7 – ADEN: ADC Enable */
 	/* Bit 3 – ADIE: ADC Interrupt Enable */
 	/* Bits 2:0 – ADPSn: ADC Prescaler Select */
-	ADCSRA = (0 << ADEN) | (1 << ADIE) | (1<< ADPS2) | (1 << ADPS1) | (0 << ADPS0);	
+	ADCSRA = (0 << ADEN) | (1 << ADATE) | (1 << ADIE) | (1<< ADPS2) | (1 << ADPS1) | (0 << ADPS0);	
 	/* Digital Input Disable Register 0 */
-	DIDR0 = (1 << ADC0D); // the digital input buffer on the A0 pin is disabled
+	//DIDR0 = (1 << ADC0D); // the digital input buffer on the A0 pin is disabled
+	DDRB = (0 << DDB5);
 }
 
 /**
@@ -59,20 +60,25 @@ void adcStop (void){
 uint16_t adcRead ( void ){
 	uint8_t adc_result_low_reg = ADCL;
 	uint8_t adc_result_high_reg = ADCH;
-	uint8_t result = (adc_result_high_reg << 8) | adc_result_low_reg;
+	uint16_t result = (adc_result_high_reg << 8) | adc_result_low_reg;
 	return result;
 }
 
 
-mb_float_type   temperature; // mb_float_type not defined here!!!!
+
 /**
  *@brief          ADC Conversion Complete Interrupt handle 
  */
 ISR ( ADC_vect ){
-	uint16_t result =0;
-	result = adcRead();
-	TEMPERATURE.f = (float)result / 1024.0 * 2.5; // 2.5[V] = AREF
 	
+	uint16_t result = 0;
+	result = adcRead();
+	//TEMPERATURE.f = ((float)result / 1024.0) * 2.5; // 2.5[V] = AREF
+	TEMPERATURE.f = (float)result;
+	/*
 	uint16_reg_array[MB_ADR_TEMPERATURE] = ( TEMPERATURE.u[0] << 8 ) | ( TEMPERATURE.u[1] );
 	uint16_reg_array[MB_ADR_TEMPERATURE+1] = ( TEMPERATURE.u[2] << 8 ) | ( TEMPERATURE.u[3] );
+	*/
+	
+	//PORTB = (1<< PORTB5); // set led on
 }

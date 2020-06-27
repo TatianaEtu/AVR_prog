@@ -15,10 +15,11 @@
 #include "lib_modbus\modbus.h"
 #include "lib_modbus\modbus.c"
 
-/*
+
 #include "lib_periphery\ADC.h"
 #include "lib_periphery\ADC.c"
 
+/*
 #include "lib_periphery\PWM.h"
 #include "lib_periphery\PWM.c"
 */
@@ -33,10 +34,10 @@ int main(void)
 
 	
 	mbInit();
-	/*
+	
 	adcInit();
 	adcStart();
-	pwmInit();
+/*	pwmInit();
 	pwmStart();
 	*/
 	
