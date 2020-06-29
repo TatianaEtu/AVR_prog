@@ -26,12 +26,7 @@
 
 #include "lib_pid_controller\PID.h"
 #include "lib_pid_controller\PID.c"
-/*
-static pidContext_t  pidCtx;
-pidCtx.kp = 1.0;
-pidCtx.ki   = 0.01;
-pidCtx.kd   = 0;
-*/
+
 static pidContext_t  pidCtx = {
 	.kp   = 1.0,
 	.ki   = 0.01,
@@ -62,7 +57,7 @@ int main(void)
 	
     while (1) 
     {
-		
+		/*
 		PID_CONTROL_ERROR.f = SET_POINT.f - TEMPERATURE.f;
 		pidCtx.err = PID_CONTROL_ERROR.f; // + check dead zone
 		PID_CONTROL_OUT.f = pidCalculation(&pidCtx);
@@ -83,8 +78,10 @@ int main(void)
 		
 		uint16_reg_array[MB_ADR_PID_CONTROL_I_FACTOR] = ( PID_CONTROL_I_FACTOR.u[0] << 8 ) | ( PID_CONTROL_I_FACTOR.u[1] );
 		uint16_reg_array[MB_ADR_PID_CONTROL_I_FACTOR+1] = ( PID_CONTROL_I_FACTOR.u[2] << 8 ) | ( PID_CONTROL_I_FACTOR.u[3] );
-		
+		*/
+		pwmSetDutyCycle (PID_CONTROL_OUT.f);
 		_delay_ms(10);	// sampling frequency 100 Hz
+		
 	
 	}
 	
