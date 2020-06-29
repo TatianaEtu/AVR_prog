@@ -61,9 +61,7 @@ Discarded input sections
                 0x00000000        0xa main.o
  .text.mbGetState
                 0x00000000        0x6 main.o
- .text.adcStart
-                0x00000000        0x8 main.o
- .text.adcStop  0x00000000        0x6 main.o
+ .text.adcStop  0x00000000        0xa main.o
  .text          0x00000000        0x0 f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
  .data          0x00000000        0x0 f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
  .bss           0x00000000        0x0 f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
@@ -242,7 +240,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x710
+.text           0x00000000      0x74c
  *(.vectors)
  .vectors       0x00000000       0x68 F:/AtmelStudio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -373,26 +371,29 @@ END GROUP
                 0x000004a6       0xa0 main.o
                 0x000004a6                __vector_20
  .text.__vector_14
-                0x00000546       0xb6 main.o
+                0x00000546       0xa2 main.o
                 0x00000546                __vector_14
- .text.adcInit  0x000005fc       0x10 main.o
-                0x000005fc                adcInit
- .text.adcRead  0x0000060c        0xe main.o
-                0x0000060c                adcRead
+ .text.adcInit  0x000005e8       0x14 main.o
+                0x000005e8                adcInit
+ .text.adcStart
+                0x000005fc        0xc main.o
+                0x000005fc                adcStart
+ .text.adcRead  0x00000608       0x10 main.o
+                0x00000608                adcRead
  .text.__vector_21
-                0x0000061a       0x62 main.o
-                0x0000061a                __vector_21
- .text.main     0x0000067c       0x16 main.o
-                0x0000067c                main
+                0x00000618       0xa2 main.o
+                0x00000618                __vector_21
+ .text.main     0x000006ba       0x14 main.o
+                0x000006ba                main
  .text.avr-libc.fplib
-                0x00000692       0x7a f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x00000692                __floatunsisf
-                0x00000696                __floatsisf
-                0x0000070c                . = ALIGN (0x2)
+                0x000006ce       0x7a f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x000006ce                __floatunsisf
+                0x000006d2                __floatsisf
+                0x00000748                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000070c        0x0 f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000070c                _exit
-                0x0000070c                exit
+ .fini9         0x00000748        0x0 f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000748                _exit
+                0x00000748                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -411,11 +412,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000070c        0x4 f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000748        0x4 f:/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000710                _etext = .
+                0x0000074c                _etext = .
 
-.data           0x00800100        0x2 load address 0x00000710
+.data           0x00800100        0x2 load address 0x0000074c
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -458,8 +459,8 @@ END GROUP
                 0x00800232                MB_STATE
                 0x00800233                union_arr
                 0x00800283                PROVIDE (__bss_end, .)
-                0x00000710                __data_load_start = LOADADDR (.data)
-                0x00000712                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000074c                __data_load_start = LOADADDR (.data)
+                0x0000074e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800283        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -538,24 +539,24 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1113
+.debug_info     0x00000000     0x10ff
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 F:/AtmelStudio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4      0xb1f main.o
+ .debug_info    0x000005f4      0xb0b main.o
 
 .debug_abbrev   0x00000000      0x8ac
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 F:/AtmelStudio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x30a main.o
 
-.debug_line     0x00000000      0xa4a
+.debug_line     0x00000000      0xa47
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 F:/AtmelStudio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_line    0x00000133      0x917 main.o
+ .debug_line    0x00000133      0x914 main.o
 
-.debug_frame    0x00000000      0x3e4
+.debug_frame    0x00000000      0x3f8
  *(.debug_frame)
- .debug_frame   0x00000000      0x3e4 main.o
+ .debug_frame   0x00000000      0x3f8 main.o
 
 .debug_str      0x00000000      0x80a
  *(.debug_str)
@@ -563,9 +564,9 @@ END GROUP
  .debug_str     0x00000208      0x602 main.o
                                 0x644 (size before relaxing)
 
-.debug_loc      0x00000000      0xb14
+.debug_loc      0x00000000      0xb48
  *(.debug_loc)
- .debug_loc     0x00000000      0xb14 main.o
+ .debug_loc     0x00000000      0xb48 main.o
 
 .debug_macinfo
  *(.debug_macinfo)

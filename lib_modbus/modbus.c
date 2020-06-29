@@ -36,6 +36,13 @@ void mbInit(void)
 	uint16_reg_array[MB_ADR_TEMPERATURE] = 278;
 	uint16_reg_array[MB_ADR_TEMPERATURE+1] = 32;
 	*/
+	
+	
+	/*
+	SET_POINT.f = 894.78;
+	uint16_reg_array[MB_ADR_SET_POINT] = ( SET_POINT.u[0] << 8 ) | ( SET_POINT.u[1] );
+	uint16_reg_array[MB_ADR_SET_POINT+1] = ( SET_POINT.u[2] << 8 ) | ( SET_POINT.u[3] );
+	*/
 }
 
 /**
@@ -435,8 +442,7 @@ ISR (TIMER0_COMPA_vect){
 		}
 		/* Clear receive buffer in all cases! even if slave don't need to reply */
 		mbClearRecieveBuffer ();
-		uint16_reg_array[MB_ADR_TEMPERATURE] = 0xAA0B;
-		uint16_reg_array[MB_ADR_TEMPERATURE+1] = 0xBB0A;
+		
 	}
 }
 
