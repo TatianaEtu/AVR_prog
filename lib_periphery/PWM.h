@@ -7,9 +7,9 @@
 
 /**
  *@brief    Initialize PWM (Timer 1)
- *@params   Fast PWM, 10-bit. OCR1A update at bottom, TOV1 flag set on top, top = 1023	
+ *@params   Fast PWM, 16-bit. OCR1A update at bottom, TOV1 flag set on top, top = 2^16	
  *          Non-inverting mode:	clear OC1A on Compare Match, set OC1A at BOTTOM
- *          Prescaler = 64, timer1 frequency = 16000000|64 = 250 kHz. PWM frequency = 250000[Hz]/1023[tics] = 244,4 [Hz]	
+ *          Prescaler = 1, timer1 frequency = 16 MHz. PWM frequency = 16000000[Hz]/65536[tics] = 245 [Hz]	
  *          All interrupts disable	
  *@note     After initialization timer1 is stopped! To start timer1 call pwmStart();
  */
