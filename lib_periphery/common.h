@@ -51,7 +51,7 @@ mb_float_type union_arr[20];
 #define PID_CONTROL_P_FACTOR       union_arr[3]
 #define PID_CONTROL_I_FACTOR       union_arr[4]
 #define PID_CONTROL_D_FACTOR       union_arr[5]
-#define PID_OUT                    union_arr[6]
+#define PID_CONTROL_OUT            union_arr[6]
 
 
 

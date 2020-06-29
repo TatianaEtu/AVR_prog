@@ -6,8 +6,8 @@
  *@brief           ADC Initialization
  *                 1. Channel 0 (pin A0)
  *                 2. Voltage reference -> AREF
- *                 3. ADC clock prescaler = 64, ADC clock frequency = 250 kHz, // !!!! 128, for test
- *                 time to 1 normal conversation (13 clock cycles) = 52 us
+ *                 3. ADC clock prescaler = 128, ADC clock frequency = 125 kHz, 
+ *                 time to 1 normal conversation (13 clock cycles) = 104 us (~9.6 kHz)
  *                 4. Free running mode
  *                 5. Result is right adjusted
  *                 6. ADC Interrupt is enable ( ADC Conversion Complete)
@@ -17,7 +17,7 @@
  */
 void adcInit ( void ){
 	/* ADC Multiplexer Selection Register */
-	/* Bits 7:6 – REFSn: Reference Selection:  AVCC with external capacitor at AREF pin */
+	/* Bits 7:6 – REFSn: Reference Selection:  AREF, Internal Vref turned off */
 	/* Bit 5 – ADLAR: ADC Left Adjust Result */
 	/* Bits 3:0 – MUXn: Analog Channel Selection [n = 3:0] */
 	ADMUX |= (0 << REFS1) | (0 << REFS0) | (0 << ADLAR) | (0 << MUX3) | (0 << MUX2) | (0 << MUX1) | (0 << MUX0);
@@ -59,8 +59,8 @@ void adcStop (void){
  *                 So if more than 8-bit precision is required ADCL must be read first, then ADCH.
  */
 uint16_t adcRead ( void ){
-	uint8_t adc_result_low_reg = ADCL;
-	uint8_t adc_result_high_reg = ADCH;
+	//uint8_t adc_result_low_reg = ADCL;
+	//uint8_t adc_result_high_reg = ADCH;
 	uint16_t result = ADC; //(adc_result_high_reg << 8) | adc_result_low_reg;
 	return result;
 }
@@ -74,13 +74,13 @@ ISR ( ADC_vect ){
 	
 	uint16_t result = 0;
 	result = adcRead();
-	//TEMPERATURE.f = ((float)result / 1024.0) * 2.5; // 2.5[V] = AREF
+	//TEMPERATURE.f = ((float)result / 1023.0) * 2.5; // 2.5[V] = AREF
 	TEMPERATURE.f = (float)result;	
-	//TEMPERATURE.f = 1026.57;
+	
 	
 	uint16_reg_array[MB_ADR_TEMPERATURE] = ( TEMPERATURE.u[0] << 8 ) | ( TEMPERATURE.u[1] );
 	uint16_reg_array[MB_ADR_TEMPERATURE+1] = ( TEMPERATURE.u[2] << 8 ) | ( TEMPERATURE.u[3] );
 	
 	
-	ADCSRA|=(1<<ADSC); // start the next conversion // ???
+	
 }

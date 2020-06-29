@@ -19,8 +19,9 @@ main.d main.o: .././main.c \
  f:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  .././lib_modbus\../lib_periphery\uart.c \
  .././lib_modbus\../lib_periphery\timers.h \
- .././lib_modbus\../lib_periphery\timers.c .././lib_periphery\ADC.h \
- .././lib_periphery\ADC.c .././lib_periphery\../lib_periphery\common.h
+ .././lib_modbus\../lib_periphery\timers.c .././lib_periphery\PWM.h \
+ .././lib_periphery\PWM.c .././lib_periphery\../lib_periphery\common.h \
+ .././lib_pid_controller\PID.h .././lib_pid_controller\PID.c
 
 f:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -68,8 +69,12 @@ f:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h
 
 .././lib_modbus\../lib_periphery\timers.c:
 
-.././lib_periphery\ADC.h:
+.././lib_periphery\PWM.h:
 
-.././lib_periphery\ADC.c:
+.././lib_periphery\PWM.c:
 
 .././lib_periphery\../lib_periphery\common.h:
+
+.././lib_pid_controller\PID.h:
+
+.././lib_pid_controller\PID.c:

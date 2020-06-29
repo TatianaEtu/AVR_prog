@@ -27,22 +27,6 @@ void mbInit(void)
 	timer0Init();
 	timer0Start();
 	timer0OCRAInrerruptEn();  
-	
-
-	/*
-	VAR1 = 34780; // test
-	uint16_reg_array[0] = VAR1;
-	uint16_reg_array[1] = 278;
-	uint16_reg_array[MB_ADR_TEMPERATURE] = 278;
-	uint16_reg_array[MB_ADR_TEMPERATURE+1] = 32;
-	*/
-	
-	
-	/*
-	SET_POINT.f = 894.78;
-	uint16_reg_array[MB_ADR_SET_POINT] = ( SET_POINT.u[0] << 8 ) | ( SET_POINT.u[1] );
-	uint16_reg_array[MB_ADR_SET_POINT+1] = ( SET_POINT.u[2] << 8 ) | ( SET_POINT.u[3] );
-	*/
 }
 
 /**
@@ -286,18 +270,18 @@ void mbFun10Execution (void)
 		/* record new values to "uint16_reg_array" - modbas dataset */
 		for (uint16_t j = 0; j < num_of_bytes; j=j+2){
 			uint16_reg_array[starting_adr + k] = rx_buffer[7 + j]<<8 | rx_buffer[7 + j + 1];
-		/*	if ((starting_adr + k) >= MB_REG_ADR_FLOAT_BEGINING){
+			if ((starting_adr + k) >= MB_REG_ADR_FLOAT_BEGINING){
 				if (((starting_adr + k - MB_REG_ADR_FLOAT_BEGINING) % 2) != 0){
-					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[0] = uint16_reg_array[starting_adr + k - 1] >> 8;
-					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[1] = uint16_reg_array[starting_adr + k - 1] & 0xFF;
-					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[2] = uint16_reg_array[starting_adr + k] >> 8;
-					union_arr[starting_adr + k - MB_REG_ADR_FLOAT_BEGINING - 1].u[3] = uint16_reg_array[starting_adr + k] & 0xFF;
+					union_arr[((starting_adr + k - MB_REG_ADR_FLOAT_BEGINING) / 2)].u[0] = uint16_reg_array[starting_adr + k - 1] >> 8;
+					union_arr[((starting_adr + k - MB_REG_ADR_FLOAT_BEGINING) / 2)].u[1] = uint16_reg_array[starting_adr + k - 1] & 0xFF;
+					union_arr[((starting_adr + k - MB_REG_ADR_FLOAT_BEGINING) / 2)].u[2] = uint16_reg_array[starting_adr + k] >> 8;
+					union_arr[((starting_adr + k - MB_REG_ADR_FLOAT_BEGINING) / 2)].u[3] = uint16_reg_array[starting_adr + k] & 0xFF;
 				}				
 			}
 			else{
 				mb_uint16_variables_arr[starting_adr + k] = uint16_reg_array[starting_adr + k];
 			}
-			*/
+			
 			k++;
 		}
 		/* Normal response copies the request completely */
